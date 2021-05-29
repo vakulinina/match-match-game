@@ -1,0 +1,19 @@
+[
+  {
+    "category": "cats",
+    "images": [
+      "paw-1.png",
+      "paw-2.png",
+      "paw-3.png",
+      "paw-4.png",
+      "paw-5.png",
+      "paw-6.png",
+      "paw-7.png",
+      "paw-8.png"
+    ]
+  },
+  {
+    "category": "dogs",
+    "images": []
+  }
+]

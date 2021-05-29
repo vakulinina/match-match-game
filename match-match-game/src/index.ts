@@ -1,8 +1,10 @@
-const root = document.querySelector('.root');
-if (root) {
-  root.innerHTML = 'it works';
-  if (true) {
-    console.log(4);
-  }
-}
-console.log(4);
+import './style.css';
+import { App } from './app';
+
+window.onload = () => {
+  const appElement = document.getElementById('app');
+
+  if (!appElement) throw Error('App root element not found');
+
+  new App(appElement).start();
+};
