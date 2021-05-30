@@ -13,7 +13,7 @@ export class Game extends BaseComponent {
   private isAnimation = false;
 
   constructor() {
-    super();
+    super('main', []);
     this.cardsField = new CardsField();
     this.element.appendChild(this.cardsField.element);
   }
