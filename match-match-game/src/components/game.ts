@@ -2,6 +2,7 @@ import { BaseComponent } from './base-component';
 import { Card } from './card';
 import { CardsField } from './cards-field';
 import { delay } from '../shared/delay';
+import { ImageCategoryModel } from '../models/image-category-model';
 
 const FLIP_DELAY = 500;
 
@@ -16,6 +17,16 @@ export class Game extends BaseComponent {
     super('main', []);
     this.cardsField = new CardsField();
     this.element.appendChild(this.cardsField.element);
+  }
+
+  async start(): Promise<void> {
+    const response = await fetch('./images.json');
+    const categories: ImageCategoryModel[] = await response.json();
+    const selectedCategory = categories[0];
+    const images = selectedCategory.images.map(
+      (filename: string) => `../images/${selectedCategory.category}/${filename}`
+    );
+    this.newGame(images);
   }
 
   newGame(images: string[]): void {

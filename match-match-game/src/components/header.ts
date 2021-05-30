@@ -3,6 +3,7 @@ import { BaseComponent } from './base-component';
 export class Header extends BaseComponent {
   constructor() {
     super('header', []);
+    // Move navbar to separate component (to render it with different active buttons)
     this.element.innerHTML = `
       <span class="logo">MATCH<br>MATCH</span>
       <nav class="navbar">
