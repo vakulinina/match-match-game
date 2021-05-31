@@ -42,8 +42,10 @@ export class Game extends BaseComponent {
   async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
     this.pairsOpen = 0;
-    const cards = images.concat(images).map((url) => new Card(url));
-    // .sort(() => Math.random() - 0.5);
+    const cards = images
+      .concat(images)
+      .map((url) => new Card(url))
+      .sort(() => Math.random() - 0.5);
 
     cards.forEach((card) =>
       card.element.addEventListener('click', () => this.cardHandler(card))
@@ -67,7 +69,7 @@ export class Game extends BaseComponent {
     }
 
     if (this.activeCard.image !== card.image) {
-      await Promise.all([this.activeCard.markWrong(), card.markWrong()])
+      await Promise.all([this.activeCard.markWrong(), card.markWrong()]);
       await Promise.all([this.activeCard.close(), card.close()]);
     } else {
       this.activeCard.markCorrect();
@@ -80,7 +82,7 @@ export class Game extends BaseComponent {
     this.isAnimation = false;
   }
 
-  finish() {
+  finish(): void {
     this.timer.stop();
     this.element.append(this.winPopup.element);
   }
