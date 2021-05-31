@@ -1,7 +1,7 @@
 import { BaseComponent } from './base-component';
 import { Card } from './card';
 
-const SHOW_TIME = 1;
+const SHOW_TIME = 3;
 
 export class CardsField extends BaseComponent {
   private cards: Card[] = [];
@@ -15,11 +15,14 @@ export class CardsField extends BaseComponent {
     this.element.innerHTML = '';
   }
 
-  addCards(cards: Card[]): void {
+  addCards(cards: Card[]): Promise<void> {
     this.cards = cards;
     this.cards.forEach((card) => this.element.appendChild(card.element));
-    setTimeout(() => {
-      this.cards.forEach((card) => card.close());
-    }, SHOW_TIME * 1000);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.cards.forEach((card) => card.close());
+        resolve();
+      }, SHOW_TIME * 1000);
+    });
   }
 }

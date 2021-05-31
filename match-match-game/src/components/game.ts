@@ -3,6 +3,7 @@ import { Card } from './card';
 import { CardsField } from './cards-field';
 import { delay } from '../shared/delay';
 import { ImageCategoryModel } from '../models/image-category-model';
+import { Timer } from './timer';
 
 const FLIP_DELAY = 500;
 
@@ -13,10 +14,13 @@ export class Game extends BaseComponent {
 
   private isAnimation = false;
 
+  private timer: Timer;
+
   constructor() {
-    super('div', []);
+    super('div', ['game']);
     this.cardsField = new CardsField();
-    this.element.appendChild(this.cardsField.element);
+    this.timer = new Timer;
+    this.element.append(this.timer.element, this.cardsField.element);
   }
 
   async start(): Promise<void> {
@@ -29,7 +33,7 @@ export class Game extends BaseComponent {
     this.newGame(images);
   }
 
-  newGame(images: string[]): void {
+  async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
     const cards = images.concat(images).map((url) => new Card(url));
     // .sort(() => Math.random() - 0.5);
@@ -38,7 +42,8 @@ export class Game extends BaseComponent {
       card.element.addEventListener('click', () => this.cardHandler(card))
     );
 
-    this.cardsField.addCards(cards);
+    await this.cardsField.addCards(cards);
+    this.timer.start();
   }
 
   private async cardHandler(card: Card) {
