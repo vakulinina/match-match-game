@@ -2,6 +2,8 @@ import { App } from '../app';
 import { About } from '../components/about';
 import { Game } from '../components/game';
 import { Route } from '../models/route-model';
+import { Settings } from '../components/settings';
+import { Score } from '../components/score';
 
 export class Router {
   private readonly routes: Route[];
@@ -19,13 +21,27 @@ export class Router {
         },
       },
       {
+        name: 'settings',
+        component(app: App) {
+          const settings = new Settings();
+          app.main.element.appendChild(settings.element);
+        },
+      },
+      {
+        name: 'score',
+        component(app: App) {
+          const score = new Score();
+          app.main.element.appendChild(score.element);
+        },
+      },
+      {
         name: 'game',
         component(app: App) {
           const game = new Game();
           app.main.element.appendChild(game.element);
           game.start();
         },
-      },
+      }
     ];
     this.defaultRoute = {
       name: 'default',
