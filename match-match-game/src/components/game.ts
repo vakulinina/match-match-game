@@ -37,7 +37,7 @@ export class Game extends BaseComponent {
     const categories: ImageCategoryModel[] = await response.json();
     const selectedCategory = categories[0];
     const images = selectedCategory.images.map(
-      (filename: string) => `../images/${selectedCategory.category}/${filename}`
+      (filename: string) => `./images/${selectedCategory.category}/${filename}`
     );
     this.newGame(images);
   }
