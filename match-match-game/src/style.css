@@ -154,6 +154,14 @@ img {
   transform: rotateY(180deg);
 }
 
+.card-back.wrong {
+  background-color: rgb(218, 68, 68);
+}
+
+.card-back.correct {
+  background-color: rgb(36, 211, 202);
+}
+
 .win-popup {
   display: flex;
   flex-flow: column wrap;

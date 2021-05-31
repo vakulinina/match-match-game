@@ -1,12 +1,9 @@
 import { BaseComponent } from './base-component';
 import { Card } from './card';
 import { CardsField } from './cards-field';
-import { delay } from '../shared/delay';
 import { ImageCategoryModel } from '../models/image-category-model';
 import { Timer } from './timer';
 import { WinPopup } from './win-popup';
-
-const FLIP_DELAY = 500;
 
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
@@ -26,7 +23,7 @@ export class Game extends BaseComponent {
   constructor() {
     super('div', ['game']);
     this.cardsField = new CardsField();
-    this.timer = new Timer;
+    this.timer = new Timer();
     this.winPopup = new WinPopup();
     this.element.append(this.timer.element, this.cardsField.element);
     this.totalPairs = 8;
@@ -70,14 +67,15 @@ export class Game extends BaseComponent {
     }
 
     if (this.activeCard.image !== card.image) {
-      // TODO: add color backlight for match case and error
-      await delay(FLIP_DELAY);
+      await Promise.all([this.activeCard.markWrong(), card.markWrong()])
       await Promise.all([this.activeCard.close(), card.close()]);
+    } else {
+      this.activeCard.markCorrect();
+      card.markCorrect();
+      this.pairsOpen++;
+      if (this.pairsOpen === this.totalPairs) this.finish();
     }
 
-    this.pairsOpen++;
-
-    if (this.pairsOpen === this.totalPairs) this.finish();
     this.activeCard = undefined;
     this.isAnimation = false;
   }

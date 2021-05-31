@@ -1,6 +1,7 @@
 import { BaseComponent } from './base-component';
 
 const FLIP_CLASS = 'flipped';
+const FLIP_DELAY = 500;
 
 export class Card extends BaseComponent {
   isOpen = false;
@@ -35,5 +36,20 @@ export class Card extends BaseComponent {
         once: true,
       });
     });
+  }
+
+  markWrong(): Promise<void> {
+    return new Promise((resolve) => {
+      const WRONG_CLASS = 'wrong';
+      this.element.lastElementChild?.classList.add(WRONG_CLASS);
+      setTimeout(() => {
+        this.element.lastElementChild?.classList.remove(WRONG_CLASS);
+        resolve();
+      }, FLIP_DELAY);
+    });
+  }
+
+  markCorrect(): void {
+    this.element.lastElementChild?.classList.add('correct');
   }
 }
