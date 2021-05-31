@@ -1,4 +1,3 @@
-import { Game } from './components/game';
 import { Header } from './components/header';
 import { BaseComponent } from './components/base-component';
 
