@@ -8,12 +8,12 @@ export class Header extends BaseComponent {
       <span class="logo">MATCH<br>MATCH</span>
       <nav class="navbar">
         <ul class="nav-items">
-          <li><a class="nav-link nav-link-active" href="#about">About Game</a></li>
-          <li><a class="nav-link" href="#score">Best Score</a></li>
-          <li><a class="nav-link" href="#settings">Game Settings</a></li>
+          <li><a class="nav-link nav-link-active" data-href="about" href="#about">About Game</a></li>
+          <li><a class="nav-link" data-href="game" href="#game">Game</a></li>
+          <li><a class="nav-link" data-href="settings" href="#settings">Game Settings</a></li>
         </ul>
       </nav>
-      <button class="start-game-btn">Start Game</button>
+      <a href="#game"><button class="start-game-btn">Start Game</button></a>
     `;
   }
 }

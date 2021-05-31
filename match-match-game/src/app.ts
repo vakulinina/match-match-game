@@ -1,20 +1,15 @@
 import { Game } from './components/game';
-import { ImageCategoryModel } from './models/image-category-model';
 import { Header } from './components/header';
+import { BaseComponent } from './components/base-component';
 
 export class App {
   private readonly header: Header;
 
-  private readonly game: Game;
+  readonly main: BaseComponent;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
-    this.game = new Game();
-    this.rootElement.append(this.header.element, this.game.element);
-  }
-
-  render(): void{
-    this.rootElement.append(this.header.element, this.game.element);
-    this.game.start();
+    this.main = new BaseComponent('main', []);
+    this.rootElement.append(this.header.element, this.main.element);
   }
 }

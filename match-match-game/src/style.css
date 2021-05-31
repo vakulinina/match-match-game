@@ -60,7 +60,7 @@ img {
 
 .nav-link {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: 10px 10px;
   height: 100%;
   color: white;
