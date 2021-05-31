@@ -179,8 +179,8 @@ img {
 
 .new-game-btn {
   border: none;
-  width: 80%;
-  height: 30%;
+  width: 480px;
+  height: 60px;
   border-radius: 4px;
   font-size: inherit;
   font-weight: bold;

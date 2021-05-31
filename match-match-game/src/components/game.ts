@@ -4,6 +4,7 @@ import { CardsField } from './cards-field';
 import { delay } from '../shared/delay';
 import { ImageCategoryModel } from '../models/image-category-model';
 import { Timer } from './timer';
+import { WinPopup } from './win-popup';
 
 const FLIP_DELAY = 500;
 
@@ -12,15 +13,23 @@ export class Game extends BaseComponent {
 
   private activeCard?: Card;
 
+  private timer: Timer;
+
   private isAnimation = false;
 
-  private timer: Timer;
+  private pairsOpen = 0;
+
+  totalPairs: number;
+
+  winPopup: WinPopup;
 
   constructor() {
     super('div', ['game']);
     this.cardsField = new CardsField();
     this.timer = new Timer;
+    this.winPopup = new WinPopup();
     this.element.append(this.timer.element, this.cardsField.element);
+    this.totalPairs = 8;
   }
 
   async start(): Promise<void> {
@@ -35,6 +44,7 @@ export class Game extends BaseComponent {
 
   async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
+    this.pairsOpen = 0;
     const cards = images.concat(images).map((url) => new Card(url));
     // .sort(() => Math.random() - 0.5);
 
@@ -65,9 +75,15 @@ export class Game extends BaseComponent {
       await Promise.all([this.activeCard.close(), card.close()]);
     }
 
+    this.pairsOpen++;
+
+    if (this.pairsOpen === this.totalPairs) this.finish();
     this.activeCard = undefined;
     this.isAnimation = false;
   }
 
-  // TODO: add finish() {}
+  finish() {
+    this.timer.stop();
+    this.element.append(this.winPopup.element);
+  }
 }

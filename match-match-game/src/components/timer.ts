@@ -1,27 +1,33 @@
 import { BaseComponent } from './base-component';
 
 export class Timer extends BaseComponent {
-  count: number;
+  time: number;
+
+  counter!: NodeJS.Timeout;
 
   constructor() {
     super('div', ['timer']);
-    this.count = 0;
+    this.time = 0;
     this.element.innerHTML = `<span>00 : 00</span>`;
   }
 
-  start() {
-    setInterval(this.tick.bind(this), 1000);
+  start(): void {
+    this.counter = setInterval(() => this.tick(), 1000);
   }
 
-  tick() {
-    this.count++;
-    const minutes = Math.trunc((this.count / 60) % 60);
-    const seconds = Math.trunc(this.count % 60);
+  tick(): void {
+    this.time++;
+    const minutes = Math.trunc((this.time / 60) % 60);
+    const seconds = Math.trunc(this.time % 60);
     this.element.innerHTML = `
       <span>
         ${minutes < 10 ? `0${minutes}` : minutes} :
           ${seconds < 10 ? `0${seconds}` : seconds}
       </span>
     `;
+  }
+
+  stop(): void {
+    clearInterval(this.counter);
   }
 }
