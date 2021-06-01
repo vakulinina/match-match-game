@@ -20,13 +20,13 @@ export class Form extends BaseComponent {
     this.submitBtn.element.setAttribute('value', 'Add user');
     this.submitBtn.element.addEventListener('click', (event) => {
       event.preventDefault();
-      if (this.isValid())
+      if (Form.isValid())
         this.element.innerHTML = '<p><b>You are registered</b><p>';
     });
     this.element.append(this.submitBtn.element);
   }
 
-  isValid(): boolean {
+  static isValid(): boolean {
     const inputPatterns = [
       {
         element: <HTMLInputElement>document.querySelector('#user-name'),
@@ -53,6 +53,7 @@ export class Form extends BaseComponent {
         ),
       },
     ];
+
     let isValid = true;
     const INVALID_CLASS = 'invalid';
 
@@ -64,8 +65,6 @@ export class Form extends BaseComponent {
         element.classList.remove(INVALID_CLASS);
       }
     });
-
-    console.log(this);
 
     return isValid;
   }
