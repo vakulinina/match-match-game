@@ -5,7 +5,7 @@ export class WinPopup extends BaseComponent {
     super('div', ['win-popup']);
     this.element.innerHTML = `
       <p class="win-text">High five!</p>
-      <a href="#game"><button class="new-game-btn">NEW GAME</button></a>
+      <a href="#score"><button class="new-game-btn">SCORE BOARD</button></a>
     `;
   }
 }
