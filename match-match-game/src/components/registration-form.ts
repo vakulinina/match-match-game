@@ -27,52 +27,46 @@ export class Form extends BaseComponent {
   }
 
   isValid(): boolean {
-    const nameField = <HTMLInputElement>document.querySelector('#user-name');
-    const lastNameField = <HTMLInputElement>(
-      document.querySelector('#user-last-name')
-    );
-    const emailField = <HTMLInputElement>document.querySelector('#user-email');
-    const namePattern = new RegExp('^[a-zA-Z]+$');
-    const lastNamePattern = new RegExp('^[a-zA-Z]+$');
-    const emailPattern = new RegExp(
-      '^([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40' +
-        '\\x5b-\\x5d\\x7f-\\xff]+|\\x22([^\\x0d\\x22\\x5c\\x80-\\xff]' +
-        '|\\x5c[\\x00-\\x7f])*\\x22)(\\x2e([^\\x00-\\x20\\x22\\x28\\x' +
-        '29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+|\\x' +
-        '22([^\\x0d\\x22\\x5c\\x80-\\xff]|\\x5c[\\x00-\\x7f])*\\x22)' +
-        ')*\\x40([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3' +
-        'e\\x40\\x5b-\\x5d\\x7f-\\xff]+|\\x5b([^\\x0d\\x5b-\\x5d\\x80' +
-        '-\\xff]|\\x5c[\\x00-\\x7f])*\\x5d)(\\x2e([^\\x00-\\x20\\x22' +
-        '\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xf' +
-        'f]+|\\x5b([^\\x0d\\x5b-\\x5d\\x80-\\xff]|\\x5c[\\x00-\\x7f]' +
-        ')*\\x5d))*$'
-    );
-
-    let validity = true;
+    const inputPatterns = [
+      {
+        element: <HTMLInputElement>document.querySelector('#user-name'),
+        pattern: new RegExp('^[a-zA-Z]+$'),
+      },
+      {
+        element: <HTMLInputElement>document.querySelector('#user-last-name'),
+        pattern: new RegExp('^[a-zA-Z]+$'),
+      },
+      {
+        element: <HTMLInputElement>document.querySelector('#user-email'),
+        pattern: new RegExp(
+          '^([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40' +
+            '\\x5b-\\x5d\\x7f-\\xff]+|\\x22([^\\x0d\\x22\\x5c\\x80-\\xff]' +
+            '|\\x5c[\\x00-\\x7f])*\\x22)(\\x2e([^\\x00-\\x20\\x22\\x28\\x' +
+            '29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+|\\x' +
+            '22([^\\x0d\\x22\\x5c\\x80-\\xff]|\\x5c[\\x00-\\x7f])*\\x22)' +
+            ')*\\x40([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3' +
+            'e\\x40\\x5b-\\x5d\\x7f-\\xff]+|\\x5b([^\\x0d\\x5b-\\x5d\\x80' +
+            '-\\xff]|\\x5c[\\x00-\\x7f])*\\x5d)(\\x2e([^\\x00-\\x20\\x22' +
+            '\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xf' +
+            'f]+|\\x5b([^\\x0d\\x5b-\\x5d\\x80-\\xff]|\\x5c[\\x00-\\x7f]' +
+            ')*\\x5d))*$'
+        ),
+      },
+    ];
+    let isValid = true;
     const INVALID_CLASS = 'invalid';
 
-    if (!nameField.value || !namePattern.test(nameField.value)) {
-      nameField.classList.add(INVALID_CLASS);
-      validity = false;
-    } else {
-      nameField.classList.remove(INVALID_CLASS);
-    }
+    inputPatterns.forEach(({ element, pattern }) => {
+      if (!element.value || !pattern.test(element.value)) {
+        element.classList.add(INVALID_CLASS);
+        isValid = false;
+      } else {
+        element.classList.remove(INVALID_CLASS);
+      }
+    });
 
-    if (!lastNameField.value || !lastNamePattern.test(lastNameField.value)) {
-      lastNameField.classList.add(INVALID_CLASS);
-      validity = false;
-    } else {
-      lastNameField.classList.remove(INVALID_CLASS);
-    }
+    console.log(this);
 
-    if (!emailField.value || !emailPattern.test(emailField.value)) {
-      emailField.classList.add(INVALID_CLASS);
-      validity = false;
-    } else {
-      emailField.classList.remove(INVALID_CLASS);
-      console.log(this);
-    }
-
-    return validity;
+    return isValid;
   }
 }
