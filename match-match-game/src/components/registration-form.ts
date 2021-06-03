@@ -26,7 +26,7 @@ export class Form extends BaseComponent {
     this.element.append(this.submitBtn.element);
   }
 
-  static isValid(): boolean {
+  private static isValid(): boolean {
     const inputPatterns = [
       {
         element: <HTMLInputElement>document.querySelector('#user-name'),

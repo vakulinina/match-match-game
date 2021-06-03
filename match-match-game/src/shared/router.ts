@@ -56,7 +56,7 @@ export class Router {
     this.activateHeaderLink();
   }
 
-  activateHeaderLink(): void {
+  private activateHeaderLink(): void {
     const ACTIVE_CLASS = 'nav-link-active';
     const navLinks = document.getElementsByClassName('nav-link');
     [...navLinks].forEach((link) => link.classList.remove(ACTIVE_CLASS));

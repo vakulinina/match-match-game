@@ -3,9 +3,9 @@ import { StartButton } from './start-button';
 import { StopButton } from './stop-button';
 
 export class Header extends BaseComponent {
-  startButton: StartButton;
+  private startButton: StartButton;
 
-  stopButton: StopButton;
+  private stopButton: StopButton;
 
   constructor(isGame = false) {
     super('header', []);

@@ -37,7 +37,7 @@ export class Game extends BaseComponent {
     this.newGame(images);
   }
 
-  async newGame(images: string[]): Promise<void> {
+  private async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
     this.pairsOpen = 0;
     const cards = images
@@ -80,12 +80,12 @@ export class Game extends BaseComponent {
     this.isAnimation = false;
   }
 
-  getScore(): number {
+  private getScore(): number {
     const score = this.totalPairs * 100 - this.timer.time * 10;
     return score > 0 ? score : 0;
   }
 
-  finish(): void {
+  private finish(): void {
     this.timer.stop();
     this.element.append(new WinPopup(this.getScore()).element);
   }
