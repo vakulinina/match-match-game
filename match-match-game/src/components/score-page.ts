@@ -5,6 +5,6 @@ export class ScorePage {
   elements: HTMLElement[];
 
   constructor() {
-    this.elements = [new Header().element, new Score().element]; // add state to header
+    this.elements = [new Header().element, new Score().element];
   }
 }

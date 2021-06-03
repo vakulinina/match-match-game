@@ -43,8 +43,10 @@ export class Game extends BaseComponent {
   async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
     this.pairsOpen = 0;
-    const cards = images.concat(images).map((url) => new Card(url));
-    // .sort(() => Math.random() - 0.5);
+    const cards = images
+      .concat(images)
+      .map((url) => new Card(url))
+      .sort(() => Math.random() - 0.5);
 
     cards.forEach((card) =>
       card.element.addEventListener('click', () => this.cardHandler(card))

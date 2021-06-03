@@ -51,9 +51,9 @@ export class Router {
   handleRouting(app: App, currentRouteName: string): void {
     this.currentRoute =
       this.routes.find((p) => p.name === currentRouteName) || this.defaultRoute;
-    this.activateHeaderLink();
     this.currentRoute.component(app);
     app.render();
+    this.activateHeaderLink();
   }
 
   activateHeaderLink(): void {

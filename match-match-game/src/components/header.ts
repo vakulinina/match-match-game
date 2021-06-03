@@ -1,8 +1,16 @@
 import { BaseComponent } from './base-component';
+import { StartButton } from './start-button';
+import { StopButton } from './stop-button';
 
 export class Header extends BaseComponent {
-  constructor() {
+  startButton: StartButton;
+
+  stopButton: StopButton;
+
+  constructor(isGame = false) {
     super('header', []);
+    this.startButton = new StartButton();
+    this.stopButton = new StopButton();
     this.element.innerHTML = `
       <span class="logo">MATCH<br>MATCH</span>
       <nav class="navbar">
@@ -12,7 +20,9 @@ export class Header extends BaseComponent {
           <li><a class="nav-link" data-href="settings" href="#settings">Game Settings</a></li>
         </ul>
       </nav>
-      <a href="#game"><button class="start-game-btn">Start Game</button></a>
     `;
+    this.element.append(
+      isGame ? this.stopButton.element : this.startButton.element
+    );
   }
 }
