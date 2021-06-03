@@ -2,7 +2,7 @@ import { BaseComponent } from './base-component';
 
 export class Settings extends BaseComponent {
   constructor() {
-    super('div', ['settings']);
+    super('main', ['settings']);
     this.element.innerHTML = `
       <h2>Game settings</h2>
       <label>Difficulty<br>

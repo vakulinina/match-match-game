@@ -1,9 +1,9 @@
 import { App } from '../app';
-import { About } from '../components/about';
-import { Game } from '../components/game';
 import { Route } from '../models/route-model';
-import { Settings } from '../components/settings';
-import { Score } from '../components/score';
+import { GamePage } from '../components/game-page';
+import { AboutPage } from '../components/about-page';
+import { SettingsPage } from '../components/settings-page';
+import { ScorePage } from '../components/score-page';
 
 export class Router {
   private readonly routes: Route[];
@@ -17,47 +17,43 @@ export class Router {
       {
         name: 'about',
         component(app: App) {
-          app.main.element.appendChild(new About().element);
+          app.page = new AboutPage();
         },
       },
       {
         name: 'settings',
         component(app: App) {
-          const settings = new Settings();
-          app.main.element.appendChild(settings.element);
+          app.page = new SettingsPage();
         },
       },
       {
         name: 'score',
         component(app: App) {
-          const score = new Score();
-          app.main.element.appendChild(score.element);
+          app.page = new ScorePage();
         },
       },
       {
         name: 'game',
         component(app: App) {
-          const game = new Game();
-          app.main.element.appendChild(game.element);
-          game.start();
+          app.page = new GamePage();
         },
-      }
+      },
     ];
     this.defaultRoute = {
       name: 'default',
       component(app: App) {
-        app.main.element?.appendChild(new About().element);
+        app.page = new AboutPage();
       },
     };
     this.currentRoute = this.defaultRoute;
   }
 
-  handleRouting(app: App): void {
-    const currentRouteName = window.location.hash.slice(1);
+  handleRouting(app: App, currentRouteName: string): void {
     this.currentRoute =
       this.routes.find((p) => p.name === currentRouteName) || this.defaultRoute;
     this.activateHeaderLink();
     this.currentRoute.component(app);
+    app.render();
   }
 
   activateHeaderLink(): void {

@@ -2,7 +2,7 @@ import { BaseComponent } from './base-component';
 
 export class Score extends BaseComponent {
   constructor() {
-    super('div', ['score']);
+    super('main', ['score']);
     this.element.innerHTML = `
       <h2>Best players</h2>
       <ul>

@@ -10,10 +10,10 @@ window.onload = () => {
   const app = new App(appElement);
   const router = new Router();
 
-  router.handleRouting(app);
+  router.handleRouting(app, window.location.hash.slice(1));
 
   window.onpopstate = () => {
-    app.main.element.innerHTML = '';
-    router.handleRouting(app);
+    appElement.innerHTML = '';
+    router.handleRouting(app, window.location.hash.slice(1));
   };
 };

@@ -5,7 +5,7 @@ export class About extends BaseComponent {
   form: Form;
 
   constructor() {
-    super('div', ['about-game']);
+    super('main', ['about-game']);
     this.form = new Form();
     this.element.innerHTML = `
       <h2>How to play?</h2>

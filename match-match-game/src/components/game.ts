@@ -21,12 +21,13 @@ export class Game extends BaseComponent {
   winPopup: WinPopup;
 
   constructor() {
-    super('div', ['game']);
+    super('main', ['game']);
     this.cardsField = new CardsField();
     this.timer = new Timer();
     this.winPopup = new WinPopup();
     this.element.append(this.timer.element, this.cardsField.element);
     this.totalPairs = 8;
+    this.start();
   }
 
   async start(): Promise<void> {

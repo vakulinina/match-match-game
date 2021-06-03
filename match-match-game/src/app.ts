@@ -1,14 +1,19 @@
 import { Header } from './components/header';
 import { BaseComponent } from './components/base-component';
+import { GamePage } from './components/game-page';
 
 export class App {
-  private readonly header: Header;
+  // readonly header: Header;
 
-  readonly main: BaseComponent;
+  // readonly main: BaseComponent;
+
+  page: GamePage;
 
   constructor(private readonly rootElement: HTMLElement) {
-    this.header = new Header();
-    this.main = new BaseComponent('main', []);
-    this.rootElement.append(this.header.element, this.main.element);
+    this.page = new GamePage();
+  }
+
+  render() {
+    this.rootElement.append(...this.page.elements);
   }
 }
