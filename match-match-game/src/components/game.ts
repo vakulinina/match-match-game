@@ -8,8 +8,6 @@ import { WinPopup } from './win-popup';
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
 
-  private readonly winPopup: WinPopup;
-
   private readonly timer: Timer;
 
   private readonly totalPairs: number;
@@ -24,7 +22,6 @@ export class Game extends BaseComponent {
     super('main', ['game']);
     this.cardsField = new CardsField();
     this.timer = new Timer();
-    this.winPopup = new WinPopup();
     this.element.append(this.timer.element, this.cardsField.element);
     this.totalPairs = 8;
     this.start();
@@ -83,8 +80,13 @@ export class Game extends BaseComponent {
     this.isAnimation = false;
   }
 
+  getScore(): number {
+    const score = this.totalPairs * 100 - this.timer.time * 10;
+    return score > 0 ? score : 0;
+  }
+
   finish(): void {
     this.timer.stop();
-    this.element.append(this.winPopup.element);
+    this.element.append(new WinPopup(this.getScore()).element);
   }
 }
