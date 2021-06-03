@@ -8,17 +8,17 @@ import { WinPopup } from './win-popup';
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
 
-  private activeCard?: Card;
+  private readonly winPopup: WinPopup;
 
-  private timer: Timer;
+  private readonly timer: Timer;
+
+  private readonly totalPairs: number;
+
+  private activeCard?: Card;
 
   private isAnimation = false;
 
   private pairsOpen = 0;
-
-  totalPairs: number;
-
-  winPopup: WinPopup;
 
   constructor() {
     super('main', ['game']);
@@ -43,10 +43,8 @@ export class Game extends BaseComponent {
   async newGame(images: string[]): Promise<void> {
     this.cardsField.clear();
     this.pairsOpen = 0;
-    const cards = images
-      .concat(images)
-      .map((url) => new Card(url))
-      .sort(() => Math.random() - 0.5);
+    const cards = images.concat(images).map((url) => new Card(url));
+    // .sort(() => Math.random() - 0.5);
 
     cards.forEach((card) =>
       card.element.addEventListener('click', () => this.cardHandler(card))
