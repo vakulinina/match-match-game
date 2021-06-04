@@ -30,15 +30,17 @@ export class Form extends BaseComponent {
     const inputPatterns = [
       {
         element: <HTMLInputElement>document.querySelector('#user-name'),
-        pattern: new RegExp('^[a-zA-Z]+$'),
+        validity: (value: string) =>
+          !/[~&!@#$%№*()_—+=|:;"'`<>,.?/^]|[0-9]/.test(value),
       },
       {
         element: <HTMLInputElement>document.querySelector('#user-last-name'),
-        pattern: new RegExp('^[a-zA-Z]+$'),
+        validity: (value: string) =>
+          !/[~&!@#$%№*()_—+=|:;"'`<>,.?/^]|[0-9]/.test(value),
       },
       {
         element: <HTMLInputElement>document.querySelector('#user-email'),
-        pattern: new RegExp(
+        validity: (value: string) => new RegExp(
           '^([^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40' +
             '\\x5b-\\x5d\\x7f-\\xff]+|\\x22([^\\x0d\\x22\\x5c\\x80-\\xff]' +
             '|\\x5c[\\x00-\\x7f])*\\x22)(\\x2e([^\\x00-\\x20\\x22\\x28\\x' +
@@ -50,15 +52,15 @@ export class Form extends BaseComponent {
             '\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xf' +
             'f]+|\\x5b([^\\x0d\\x5b-\\x5d\\x80-\\xff]|\\x5c[\\x00-\\x7f]' +
             ')*\\x5d))*$'
-        ),
+        ).test(value),
       },
     ];
 
     let isValid = true;
     const INVALID_CLASS = 'invalid';
 
-    inputPatterns.forEach(({ element, pattern }) => {
-      if (!element.value || !pattern.test(element.value)) {
+    inputPatterns.forEach(({ element, validity }) => {
+      if (!element.value || !validity(element.value)) {
         element.classList.add(INVALID_CLASS);
         isValid = false;
       } else {
