@@ -7,7 +7,7 @@ export class App {
     this.page = new GamePage();
   }
 
-  render(): void{
+  render(): void {
     this.rootElement.append(...this.page.elements);
   }
 }

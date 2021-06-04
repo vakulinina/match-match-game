@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const PrettierPlugin = require('prettier-webpack-plugin');
 
 const devServer = (isDev) =>
   !isDev
@@ -65,6 +66,9 @@ module.exports = ({ development }) => ({
       patterns: [{ from: 'public' }],
     }),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new PrettierPlugin({
+      extensions: ['.js', '.ts'],
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js'],
