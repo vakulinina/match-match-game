@@ -8,7 +8,7 @@ export default class Timer extends BaseComponent {
   constructor() {
     super('div', ['timer']);
     this.time = 0;
-    this.element.innerHTML = `<span>00 : 00</span>`;
+    this.element.innerHTML = '<span>00 : 00</span>';
   }
 
   start(): void {

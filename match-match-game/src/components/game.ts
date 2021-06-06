@@ -32,7 +32,7 @@ export default class Game extends BaseComponent {
     const categories: ImageCategoryModel[] = await response.json();
     const selectedCategory = categories[0];
     const images = selectedCategory.images.map(
-      (filename: string) => `./images/${selectedCategory.category}/${filename}`
+      (filename: string) => `./images/${selectedCategory.category}/${filename}`,
     );
     this.newGame(images);
   }
@@ -46,7 +46,7 @@ export default class Game extends BaseComponent {
       .sort(() => Math.random() - 0.5);
 
     cards.forEach((card) =>
-      card.element.addEventListener('click', () => this.cardHandler(card))
+      card.element.addEventListener('click', () => this.cardHandler(card)),
     );
 
     await this.cardsField.addCards(cards);

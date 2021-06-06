@@ -22,7 +22,7 @@ export default class Header extends BaseComponent {
       </nav>
     `;
     this.element.append(
-      isGame ? this.stopButton.element : this.startButton.element
+      isGame ? this.stopButton.element : this.startButton.element,
     );
   }
 }

@@ -65,11 +65,12 @@ export default class Router {
     const ACTIVE_CLASS = 'nav-link-active';
     const navLinks = document.getElementsByClassName('nav-link');
     [...navLinks].forEach((link) => link.classList.remove(ACTIVE_CLASS));
-    const linkToActivate = [...navLinks].find((link) =>
-      link instanceof HTMLElement
-        ? link.dataset.href === this.currentRoute.name
-        : false
-    );
+    const linkToActivate: Element | undefined = [...navLinks].find((link) => {
+      if (link instanceof HTMLElement) {
+        return link.dataset.href === this.currentRoute.name;
+      }
+      return false;
+    });
     linkToActivate?.classList.add(ACTIVE_CLASS);
   }
 }
