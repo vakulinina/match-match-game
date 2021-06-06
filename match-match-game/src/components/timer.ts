@@ -3,7 +3,7 @@ import BaseComponent from './base-component';
 export default class Timer extends BaseComponent {
   time: number;
 
-  counter!: NodeJS.Timeout;
+  counter: number | undefined;
 
   constructor() {
     super('div', ['timer']);
@@ -12,11 +12,11 @@ export default class Timer extends BaseComponent {
   }
 
   start(): void {
-    this.counter = setInterval(() => this.tick(), 1000);
+    this.counter = window.setInterval(() => this.tick(), 1000);
   }
 
   tick(): void {
-    this.time = +1;
+    this.time += 1;
     const minutes = Math.trunc((this.time / 60) % 60);
     const seconds = Math.trunc(this.time % 60);
     this.element.innerHTML = `

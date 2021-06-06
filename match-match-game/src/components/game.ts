@@ -72,7 +72,7 @@ export default class Game extends BaseComponent {
     } else {
       this.activeCard.markCorrect();
       card.markCorrect();
-      this.pairsOpen = +1;
+      this.pairsOpen += 1;
       if (this.pairsOpen === this.totalPairs) this.finish();
     }
 
