@@ -1,7 +1,7 @@
-import { Header } from './header';
-import { About } from './about';
+import Header from './header';
+import About from './about';
 
-export class AboutPage {
+export default class AboutPage {
   elements: HTMLElement[];
 
   constructor() {

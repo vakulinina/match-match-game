@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class Timer extends BaseComponent {
+export default class Timer extends BaseComponent {
   time: number;
 
   counter!: NodeJS.Timeout;
@@ -16,7 +16,7 @@ export class Timer extends BaseComponent {
   }
 
   tick(): void {
-    this.time++;
+    this.time = +1;
     const minutes = Math.trunc((this.time / 60) % 60);
     const seconds = Math.trunc(this.time % 60);
     this.element.innerHTML = `

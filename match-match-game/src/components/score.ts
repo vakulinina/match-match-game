@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class Score extends BaseComponent {
+export default class Score extends BaseComponent {
   constructor() {
     super('main', ['score']);
     this.element.innerHTML = `

@@ -1,7 +1,7 @@
-import { Header } from './header';
-import { Settings } from './settings';
+import Header from './header';
+import Settings from './settings';
 
-export class SettingsPage {
+export default class SettingsPage {
   elements: HTMLElement[];
 
   constructor() {

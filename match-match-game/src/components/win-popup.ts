@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class WinPopup extends BaseComponent {
+export default class WinPopup extends BaseComponent {
   constructor(score: number) {
     super('div', ['win-popup']);
     this.element.innerHTML = `

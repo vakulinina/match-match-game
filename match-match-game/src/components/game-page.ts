@@ -1,7 +1,7 @@
-import { Header } from './header';
-import { Game } from './game';
+import Header from './header';
+import Game from './game';
 
-export class GamePage {
+export default class GamePage {
   elements: HTMLElement[];
 
   constructor() {

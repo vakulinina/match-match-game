@@ -1,7 +1,7 @@
-import { BaseComponent } from './base-component';
-import { Input } from './input';
+import BaseComponent from './base-component';
+import Input from './input';
 
-export class Form extends BaseComponent {
+export default class Form extends BaseComponent {
   private submitBtn: Input;
 
   constructor() {

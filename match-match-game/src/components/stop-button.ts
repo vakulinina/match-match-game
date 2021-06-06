@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class StopButton extends BaseComponent {
+export default class StopButton extends BaseComponent {
   constructor() {
     super('a', []);
     this.element.setAttribute('href', '#about');

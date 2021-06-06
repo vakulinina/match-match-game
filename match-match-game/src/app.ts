@@ -1,6 +1,6 @@
-import { GamePage } from './components/game-page';
+import GamePage from './components/game-page';
 
-export class App {
+export default class App {
   page: GamePage;
 
   constructor(private readonly rootElement: HTMLElement) {

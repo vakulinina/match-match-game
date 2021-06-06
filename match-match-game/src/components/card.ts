@@ -1,9 +1,9 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
 const FLIP_CLASS = 'flipped';
 const FLIP_DELAY = 500;
 
-export class Card extends BaseComponent {
+export default class Card extends BaseComponent {
   isOpen = false;
 
   constructor(readonly image: string) {

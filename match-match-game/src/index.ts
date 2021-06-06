@@ -1,6 +1,6 @@
 import './style.css';
-import { App } from './app';
-import { Router } from './shared/router';
+import App from './app';
+import Router from './shared/router';
 
 window.onload = () => {
   const appElement = document.getElementById('app');

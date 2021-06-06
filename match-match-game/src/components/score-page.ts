@@ -1,7 +1,7 @@
-import { Header } from './header';
-import { Score } from './score';
+import Header from './header';
+import Score from './score';
 
-export class ScorePage {
+export default class ScorePage {
   elements: HTMLElement[];
 
   constructor() {

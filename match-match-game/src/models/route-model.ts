@@ -1,6 +1,6 @@
-import { App } from '../app';
+import App from '../app';
 
-export interface Route {
+export default interface Route {
   name: string;
   component: (app: App) => void;
 }

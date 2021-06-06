@@ -1,9 +1,9 @@
-import { BaseComponent } from './base-component';
-import { Card } from './card';
+import BaseComponent from './base-component';
+import Card from './card';
 
 const SHOW_TIME = 5;
 
-export class CardsField extends BaseComponent {
+export default class CardsField extends BaseComponent {
   private cards: Card[] = [];
 
   constructor() {

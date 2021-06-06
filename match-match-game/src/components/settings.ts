@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class Settings extends BaseComponent {
+export default class Settings extends BaseComponent {
   constructor() {
     super('main', ['settings']);
     this.element.innerHTML = `

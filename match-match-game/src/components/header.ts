@@ -1,8 +1,8 @@
-import { BaseComponent } from './base-component';
-import { StartButton } from './start-button';
-import { StopButton } from './stop-button';
+import BaseComponent from './base-component';
+import StartButton from './start-button';
+import StopButton from './stop-button';
 
-export class Header extends BaseComponent {
+export default class Header extends BaseComponent {
   private startButton: StartButton;
 
   private stopButton: StopButton;

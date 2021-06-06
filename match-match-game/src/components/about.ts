@@ -1,7 +1,7 @@
-import { BaseComponent } from './base-component';
-import { Form } from './registration-form';
+import BaseComponent from './base-component';
+import Form from './registration-form';
 
-export class About extends BaseComponent {
+export default class About extends BaseComponent {
   form: Form;
 
   constructor() {

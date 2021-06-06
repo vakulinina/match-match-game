@@ -1,11 +1,11 @@
-import { App } from '../app';
-import { Route } from '../models/route-model';
-import { GamePage } from '../components/game-page';
-import { AboutPage } from '../components/about-page';
-import { SettingsPage } from '../components/settings-page';
-import { ScorePage } from '../components/score-page';
+import App from '../app';
+import Route from '../models/route-model';
+import GamePage from '../components/game-page';
+import AboutPage from '../components/about-page';
+import SettingsPage from '../components/settings-page';
+import ScorePage from '../components/score-page';
 
-export class Router {
+export default class Router {
   private readonly routes: Route[];
 
   private readonly defaultRoute: Route;
@@ -17,32 +17,37 @@ export class Router {
       {
         name: 'about',
         component(app: App) {
-          app.page = new AboutPage();
+          const application = app;
+          application.page = new AboutPage();
         },
       },
       {
         name: 'settings',
         component(app: App) {
-          app.page = new SettingsPage();
+          const application = app;
+          application.page = new SettingsPage();
         },
       },
       {
         name: 'score',
         component(app: App) {
-          app.page = new ScorePage();
+          const application = app;
+          application.page = new ScorePage();
         },
       },
       {
         name: 'game',
         component(app: App) {
-          app.page = new GamePage();
+          const application = app;
+          application.page = new GamePage();
         },
       },
     ];
     this.defaultRoute = {
       name: 'default',
       component(app: App) {
-        app.page = new AboutPage();
+        const application = app;
+        application.page = new AboutPage();
       },
     };
     this.currentRoute = this.defaultRoute;

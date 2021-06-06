@@ -1,6 +1,6 @@
-import { BaseComponent } from './base-component';
+import BaseComponent from './base-component';
 
-export class StartButton extends BaseComponent {
+export default class StartButton extends BaseComponent {
   constructor() {
     super('a', []);
     this.element.setAttribute('href', '#game');

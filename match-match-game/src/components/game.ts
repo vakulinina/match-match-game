@@ -1,11 +1,11 @@
-import { BaseComponent } from './base-component';
-import { Card } from './card';
-import { CardsField } from './cards-field';
-import { ImageCategoryModel } from '../models/image-category-model';
-import { Timer } from './timer';
-import { WinPopup } from './win-popup';
+import BaseComponent from './base-component';
+import Card from './card';
+import CardsField from './cards-field';
+import ImageCategoryModel from '../models/image-category-model';
+import Timer from './timer';
+import WinPopup from './win-popup';
 
-export class Game extends BaseComponent {
+export default class Game extends BaseComponent {
   private readonly cardsField: CardsField;
 
   private readonly timer: Timer;
@@ -72,7 +72,7 @@ export class Game extends BaseComponent {
     } else {
       this.activeCard.markCorrect();
       card.markCorrect();
-      this.pairsOpen++;
+      this.pairsOpen = +1;
       if (this.pairsOpen === this.totalPairs) this.finish();
     }
 
